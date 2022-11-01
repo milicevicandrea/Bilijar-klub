@@ -1,0 +1,53 @@
+﻿@model IEnumerable<WebApplication1.Models.Sto>
+
+@{
+
+        ViewBag.Title = "Rezervacije";
+        if (Session["Korisnik"] == null)
+        {
+            Response.Redirect("~/Login/Index", false);
+        }
+
+    }
+    <h2>Postojeće rezervacije</h2>
+
+    @Html.Hidden("Get", Url.Action("Get", "Login"))
+
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Početna", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Rezervacije", "GetAll", "Login")</li>
+
+                        <li>@Html.ActionLink("Logout", "Index", "Home")</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </body>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Bilijarski sto</th>
+                <th>Datum</th>
+                <th>Vreme</th>
+            </tr>
+        </thead>
+
+        <tbody id="tblInfo">
+        </tbody>
+    </table>
+

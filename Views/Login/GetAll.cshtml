@@ -1,0 +1,88 @@
+﻿@model IEnumerable<WebApplication1.Models.Sto>
+
+@{
+    ViewBag.Title = "Rezervacije";
+    if (Session["Korisnik"] == null)
+    {
+        Response.Redirect("~/Login/Index", false);
+    }
+
+
+}
+
+<h2>Postojeće rezervacije</h2>
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Početna", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Rezervacije", "GetAll", "Login")</li>
+
+                    <li>@Html.ActionLink("Logout", "Index", "Home")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+
+<table class="table">
+    <tr>
+        <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BilijarskiSto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Datum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Vreme)
+        </th>
+
+        <th></th>
+    </tr>
+
+     @foreach (var item in Model)
+    { 
+        <tr>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BilijarskiSto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Datum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vreme)
+            </td>
+
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table> 
+
+
+
+
+
